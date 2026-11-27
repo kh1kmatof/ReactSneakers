@@ -115,3 +115,112 @@
 .basket_order-btn:hover {
     background: #8ec749;
 }
+
+
+
+.basket_item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    background: #FFFFFF;
+    border: 1px solid #F3F3F3;
+    border-radius: 20px;
+    transition: 0.2s;
+}
+
+.basket_item:hover {
+    border-color: #E5E5E5;
+}
+
+.basket_item-img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.basket_item-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.basket_item-title {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.35;
+    color: #000000;
+}
+
+.basket_item-price {
+    font-weight: 700;
+    font-size: 14px;
+    color: #000000;
+}
+
+.basket_item-counter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 4px;
+}
+
+.basket_item-qty {
+    width: 26px;
+    height: 26px;
+    border-radius: 8px;
+    border: 1px solid #DBDBDB;
+    background: #FFFFFF;
+    color: #000000;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.basket_item-qty:hover {
+    border-color: #9DD558;
+    background: #9DD558;
+    color: #FFFFFF;
+}
+
+/* Soni 1 ga teng bo'lganda .active klassi qo'shilib xira tortadi */
+.basket-minus.active {
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+.basket_item-count {
+    min-width: 18px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.basket_item-remove {
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    border: 1px solid #DBDBDB;
+    background: #FFFFFF;
+    color: #B5B5B5;
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.basket_item-remove:hover {
+    border-color: #FF8585;
+    background: #FFF0F0;
+    color: #FF5C5C;
+}

@@ -2,9 +2,11 @@
     font-family: 'Inter';
     src: url(../fonts/Inter_Bold.ttf);
     font-weight: 700;
+    font-display: swap;
 }
 @font-face {
     font-family: 'Inter';
     src: url(../fonts/Inter_Regular.ttf);
     font-weight: 400;
+    font-display: swap;
 }

@@ -13,6 +13,10 @@ body {
     background: #E7F6FF;
 }
 
+a {
+    text-decoration: none;
+}
+
 button {
     background: none;
     border: none;

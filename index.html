@@ -13,13 +13,13 @@
         <header>
             <nav class="nav">
                 <div class="container">
-                    <div class="logo">
+                    <a href="#" class="logo">
                         <img src="images/log.png" alt="" class="logo-img">
                         <div class="logo_text">
                             <h3 class="logo-title">REACT SNEAKERS</h3>
                             <p class="logo-text">Магазин лучших кроссовок</p>
                         </div>
-                    </div>
+                    </a>
                     <div class="nav_buttons">
                         <button class="basket-btn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
@@ -116,19 +116,39 @@
                 </div>
 
                 <div class="basket_items">
-                    <!-- Savatchaga qo'shilgan krossovkalar JS orqali shu yerga chiqadi -->
+                    <div class="basket_item" data-id="1">
+                        <img class="basket_item-img" src="images/sneakers/sneaker-1.jpg" alt="Nike Air Max 270">
+
+                        <div class="basket_item-info">
+                            <h4 class="basket_item-title">Мужские Кроссовки Nike Air Max 270</h4>
+                            <b class="basket_item-price">12 999 руб.</b>
+
+                            <div class="basket_item-counter">
+                                <button class="basket_item-qty basket-minus active" type="button">−</button>
+                                <span class="basket_item-count">1</span>
+                                <button class="basket_item-qty basket-plus" type="button">+</button>
+                            </div>
+                        </div>
+
+                        <button class="basket_item-remove" type="button">✕</button>
+                    </div>
                 </div>
 
                 <div class="basket_bottom">
                     <div class="basket_bottom-row">
                         <span>Итого:</span>
                         <div class="basket_bottom-line"></div>
-                        <b id="basketTotal">0 руб.</b>
+                        <b id="basketPrice">0 руб.</b>
                     </div>
                     <div class="basket_bottom-row">
                         <span>Налог 5%:</span>
                         <div class="basket_bottom-line"></div>
                         <b id="basketTax">0 руб.</b>
+                    </div>
+                    <div class="basket_bottom-row">
+                        <span>All:</span>
+                        <div class="basket_bottom-line"></div>
+                        <b id="basketTotal">0 руб.</b>
                     </div>
                     <button class="basket_order-btn" type="button">
                         Оформить заказ
