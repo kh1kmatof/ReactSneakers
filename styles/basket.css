@@ -68,18 +68,26 @@
 
 .basket_items {
     flex: 1;
-    display: flex;
+    display: none;
     flex-direction: column;
     gap: 20px;
     overflow-y: auto;
     padding-right: 4px;
 }
 
-.basket_bottom {
+.basket_items.active {
     display: flex;
+}
+
+.basket_bottom {
+    display: none;
     flex-direction: column;
     gap: 18px;
     margin-top: 20px;
+}
+
+.basket_bottom.active {
+    display: flex;
 }
 
 .basket_bottom-row {
@@ -223,4 +231,103 @@
     border-color: #FF8585;
     background: #FFF0F0;
     color: #FF5C5C;
+}
+
+.basket_clean {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    text-align: center;
+    margin: auto;
+    gap: 12px;
+}
+
+.basket_clean.active {
+    display: none;
+}
+
+.basket_clean-title {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #000000;
+}
+
+.basket_clean-text {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    opacity: 0.7;
+}
+
+.basket_clean-button {
+    width: 245px;
+    height: 55px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 16px;
+    background: #9DD458;
+    color: #F3F3F3;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+
+.basket_ordered {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    text-align: center;
+    margin: auto;
+    gap: 12px;
+}
+
+.basket_ordered.active {
+    display: flex;
+}
+
+.basket_ordered-title {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 100%;
+    color: #87C20A;
+}
+
+.basket_ordered-text {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    opacity: 0.7;
+}
+
+.basket_ordered-button {
+    width: 245px;
+    height: 55px;
+    border: none;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    font-weight: 700;
+    font-size: 16px;
+    background: #9DD458;
+    color: #FFFFFF;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: 0.2s;
+}
+
+.basket_ordered-button:hover {
+    background: #8ec749;
 }

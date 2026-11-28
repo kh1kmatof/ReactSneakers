@@ -1,46 +1,109 @@
 import { products } from "../products.js"
 
-let basketItems = []
+let basketItems = JSON.parse(localStorage.getItem('sneakers_basket')) || []
+let orderCount = Number(localStorage.getItem('sneakers_order_count')) || 1
+let isBasketEventsAttached = false
 
 export const initBasket = () => {
     let basket = document.querySelector('.basket')
     let openBasket = document.querySelector('.basket-btn')
-    let closeBasket = document.querySelector('.basket-close')
+    let closeBasketBtn = document.querySelector('.basket-close')
     let addBtns = document.querySelectorAll('.product_basket-button')
     let basketList = document.querySelector('.basket_items')
+    let basketPrice = document.querySelector('#basketPrice')
+    let basketTax = document.querySelector('#basketTax')
+    let basketTotal = document.querySelector('#basketTotal')
+    let basketSpan = document.querySelector('.basket-span')
+    let basketBottom = document.querySelector('.basket_bottom')
+    let basketClean = document.querySelector('.basket_clean')
+    let basketCleanButton = document.querySelector('.basket_clean-button')
+    let basketOrder = document.querySelector('.basket_order-btn')
 
-    openBasket.addEventListener('click', () => {
-        basket.classList.add('active')
-    })
+    let basketOrdered = document.querySelector('.basket_ordered')
+    let basketOrderedButton = document.querySelector('.basket_ordered-button')
+    let orderNumber = document.querySelector('#orderNumber')
+    let orderTimer
 
-    closeBasket.addEventListener('click', () => {
-        basket.classList.remove('active')
-    })
+    if (!basket || !openBasket) return
 
-    basket.addEventListener('click', (close) => {
-        if (close.target === basket) {
+    let imgPrefix = window.location.pathname.includes('/pages/') ? '../' : ''
+
+    if (!isBasketEventsAttached) {
+        openBasket.addEventListener('click', () => {
+            basket.classList.add('active')
+        })
+
+        function closeBasket() {
             basket.classList.remove('active')
         }
-    })
 
+        closeBasketBtn.addEventListener('click', closeBasket)
+        basketCleanButton.addEventListener('click', closeBasket)
+        basketOrderedButton.addEventListener('click', closeBasket)
 
+        basket.addEventListener('click', (close) => {
+            if (close.target === basket) {
+                basket.classList.remove('active')
+            }
+        })
+
+        basketOrder.addEventListener('click', () => {
+            let subtotal = 0
+            basketItems.forEach((item) => {
+                subtotal += item.price * item.count
+            })
+            let totalWithTax = subtotal + Math.round(subtotal * 0.05)
+
+            let newOrder = {
+                orderId: orderCount,
+                totalPrice: totalWithTax,
+                items: basketItems
+            }
+
+            let oldOrders = JSON.parse(localStorage.getItem('sneakers_orders')) || []
+            let updatedOrders = [...oldOrders, newOrder]
+            localStorage.setItem('sneakers_orders', JSON.stringify(updatedOrders))
+
+            basketItems.forEach((item) => {
+                let productCard = document.querySelector(`.product[data-id="${item.id}"]`)
+                if (productCard) {
+                    let svgs = productCard.querySelectorAll('.product_basket-button svg')
+                    svgs.forEach((svg) => {
+                        svg.classList.toggle('active')
+                    })
+                }
+            })
+
+            basketItems = []
+            renderBasket()
+
+            orderNumber.textContent = `#${orderCount}`
+            orderCount += 1
+            localStorage.setItem('sneakers_order_count', orderCount)
+
+            basketClean.classList.add('active')
+            basketOrdered.classList.add('active')
+
+            clearTimeout(orderTimer)
+            orderTimer = setTimeout(() => {
+                basketOrdered.classList.remove('active')
+                basketClean.classList.remove('active')
+            }, 4000)
+        })
+
+        isBasketEventsAttached = true
+    }
 
     const renderBasket = () => {
         basketList.innerHTML = ''
+        let totalPrice = 0
 
         basketItems.forEach((item) => {
-            // 1. Mana shu yerda active klassi qo'shiladi yoki olib tashlanadi:
-            let minusClass = ''
-            if (item.count === 1) {
-                minusClass = 'active'
-            } else {
-                minusClass = ''
-            }
+            let minusClass = item.count === 1 ? 'active' : ''
 
-            // 2. Tayyorlangan minusClass o'zgaruvchisini tugma ichiga joylaymiz:
             basketList.innerHTML += `
                 <div class="basket_item" data-id="${item.id}">
-                    <img class="basket_item-img" src="${item.img}" alt="${item.title}">
+                    <img class="basket_item-img" src="${imgPrefix}${item.img}" alt="${item.title}">
 
                     <div class="basket_item-info">
                         <h4 class="basket_item-title">${item.title}</h4>
@@ -56,7 +119,16 @@ export const initBasket = () => {
                     <button class="basket_item-remove" type="button">✕</button>
                 </div>
             `
+
+            totalPrice += item.price * item.count
         })
+
+        let tax = Math.round(totalPrice * 0.05)
+        let allPrice = totalPrice + tax
+        basketPrice.innerHTML = `${totalPrice} руб.`
+        basketTax.innerHTML = `${tax} руб.`
+        basketTotal.innerHTML = `${allPrice} руб.`
+        basketSpan.innerHTML = `${allPrice} руб.`
 
         let basketPlus = basketList.querySelectorAll('.basket-plus')
         basketPlus.forEach((btn) => {
@@ -87,10 +159,8 @@ export const initBasket = () => {
             remuve.addEventListener('click', () => {
                 let id = Number(remuve.closest('.basket_item').dataset.id)
 
-                // 1. Savatcha massividan o'chiramiz
                 basketItems = basketItems.filter((item) => item.id !== id)
 
-                // 2. Asosiy sahifadagi aynan shu ID li kartochkani topib, SVG tugmasini qaytaramiz
                 let productCard = document.querySelector(`.product[data-id="${id}"]`)
                 if (productCard) {
                     let svgs = productCard.querySelectorAll('.product_basket-button svg')
@@ -99,10 +169,23 @@ export const initBasket = () => {
                     })
                 }
 
-                // 3. Savatchani qayta chizamiz
                 renderBasket()
             })
         })
+
+        if (basketItems.length != 0) {
+            clearTimeout(orderTimer)
+            basketOrdered.classList.remove('active')
+            basketBottom.classList.add('active')
+            basketList.classList.add('active')
+            basketClean.classList.add('active')
+        } else {
+            basketClean.classList.remove('active')
+            basketList.classList.remove('active')
+            basketBottom.classList.remove('active')
+        }
+
+        localStorage.setItem('sneakers_basket', JSON.stringify(basketItems))
     }
 
     addBtns.forEach((addBtn) => {
@@ -127,8 +210,18 @@ export const initBasket = () => {
                 basketItems = basketItems.filter((item) => item.id !== foundProduct.id)
             }
 
-            // Har safar ro'yxat o'zgarganda savatchani qayta chizamiz
             renderBasket()
         })
     })
+
+    basketItems.forEach((item) => {
+        let productCard = document.querySelector(`.product[data-id="${item.id}"]`)
+        if (productCard) {
+            let svgs = productCard.querySelectorAll('.product_basket-button svg')
+            svgs[0].classList.remove('active')
+            svgs[1].classList.add('active')
+        }
+    })
+
+    renderBasket()
 }

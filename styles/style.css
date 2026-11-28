@@ -1,6 +1,8 @@
 @import 'font.css';
 @import 'product.css';
 @import 'basket.css';
+@import 'order.css';
+@import 'favourite.css';
 
 * {
     margin: 0;

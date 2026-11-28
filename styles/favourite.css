@@ -1,0 +1,101 @@
+.fav-main {
+    padding: 40px 0 60px;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+}
+
+.fav-main .container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.fav_filled {
+    display: none;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.fav_filled.active {
+    display: flex;
+}
+
+.fav_top {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.fav-back {
+    width: 35px;
+    height: 35px;
+    border-radius: 8px;
+    border: 1px solid #F2F2F2;
+    background: #FFFFFF;
+    color: #C8C8C8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.fav-back:hover {
+    border-color: #000000;
+    color: #000000;
+}
+
+.fav_empty {
+    flex: 1;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    gap: 12px;
+}
+
+.fav_empty.active {
+    display: flex;
+}
+
+.fav_empty-emoji {
+    font-size: 70px;
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.fav_empty-title {
+    font-weight: 700;
+    font-size: 24px;
+    color: #000000;
+}
+
+.fav_empty-text {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #000000;
+    opacity: 0.4;
+}
+
+.fav_empty-btn {
+    width: 245px;
+    height: 55px;
+    border-radius: 18px;
+    background: #9DD458;
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 24px;
+    transition: 0.2s;
+}
+
+.fav_empty-btn:hover {
+    background: #8ec749;
+}

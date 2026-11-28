@@ -1,0 +1,169 @@
+.orders-main {
+    padding: 40px 0 60px;
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+}
+
+.orders-main .container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.orders_filled {
+    display: none;
+    flex-direction: column;
+    gap: 35px;
+}
+
+.orders_filled.active {
+    display: flex;
+}
+
+.orders_top {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.orders-back {
+    width: 35px;
+    height: 35px;
+    border-radius: 8px;
+    border: 1px solid #F2F2F2;
+    background: #FFFFFF;
+    color: #C8C8C8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.orders-back:hover {
+    border-color: #000000;
+    color: #000000;
+}
+
+.orders_empty {
+    flex: 1;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: auto;
+    gap: 12px;
+}
+
+.orders_empty.active {
+    display: flex;
+}
+
+.orders_empty-emoji {
+    font-size: 70px;
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.orders_empty-title {
+    font-weight: 700;
+    font-size: 24px;
+    color: #000000;
+}
+
+.orders_empty-text {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #000000;
+    opacity: 0.4;
+}
+
+.orders_empty-btn {
+    width: 245px;
+    height: 55px;
+    border-radius: 18px;
+    background: #9DD458;
+    color: #FFFFFF;
+    font-weight: 600;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 24px;
+    transition: 0.2s;
+}
+
+.orders_empty-btn:hover {
+    background: #8ec749;
+}
+
+
+.orders_groups {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.order_group {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding-bottom: 35px;
+    border-bottom: 1px solid #EAEAEA;
+}
+
+.order_group:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.order_group-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    background: #F9F9F9;
+    padding: 14px 20px;
+    border-radius: 14px;
+}
+
+.order_group-title {
+    font-weight: 700;
+    font-size: 20px;
+    color: #000000;
+}
+
+.order_group-total {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 15px;
+    color: #5C5C5C;
+}
+
+.order_group-total b {
+    font-weight: 700;
+    font-size: 17px;
+    color: #87C20A;
+}
+
+/* Kartochka burchagidagi x2, x3 soni */
+.order_group .product {
+    position: relative;
+}
+
+.order-card-qty {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: #9DD458;
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 4px 10px;
+    border-radius: 8px;
+}
